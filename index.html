@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MengKkong-E</title>
+  <style>
+    body{ 
+      margin:0
+     }
+
+    p{
+      margin: auto;
+      text-align: center;
+      line-height: 20px;
+      padding-top: 30px;
+    } 
+
+    #video-container {
+      margin: 0;
+      background-color: white;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #myVideo {
+      margin: 0;
+      display: none;
+    }
+
+    source,video,div{
+    	margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+	<div>
+		<p>
+			<b>Click Everywhere!</b><br>
+			~Mengkkong in search of love~
+		</p>
+	</div>
+  <div id="video-container">
+    <video id="myVideo" width="90%" height="auto">
+      <source src="./video1.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <script>
+    const video = document.getElementById('myVideo');
+
+    const videoSources = [
+      './video1.mp4',
+      './video2.mp4',
+      './video3.mp4',
+    ];
+
+    // Initialize the index to track the current video
+    let currentIndex = -1;
+
+    function playNextVideo() {
+      // Increment the index and loop back to the first video if needed
+      currentIndex = (currentIndex + 1) % videoSources.length;
+
+      // Change the video source
+      video.src = videoSources[currentIndex];
+
+      video.play();
+    }
+
+    // Function to handle the click event on the video container
+    function handleVideoContainerClick() {
+      // Show the video and start playing
+      video.style.display = 'block';
+      playNextVideo();
+      // Remove the click event listener to prevent further clicks
+      document.removeEventListener('click', handleVideoContainerClick);
+    }
+
+    // Add a click event listener to the video container
+    document.getElementById('video-container').addEventListener('click', handleVideoContainerClick);
+  </script>
+</body>
+</html>
